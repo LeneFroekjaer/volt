@@ -11,6 +11,7 @@
   <body>
     <div id="form_wrapper">
       <div id="progress_bar">
+        <img src="images/battery_2.png" alt="battery" id="battery" />
         <div id="power"></div>
         <div id="step_title">
           <p id="step_title_1" class="selected_step">Cart</p>
@@ -22,36 +23,154 @@
         <!-- FORM STEP 1: CART -->
         <div class="step">
           <h2>Services</h2>
-          <h2>Delivery</h2>
+          <div class="service_wrapper">
+            <img src="images/Volt-Charger.png" alt="volt pocket charger" />
+            <div class="service_content">
+              <label for="new_charger">
+                Volt Charger Deposit
+              </label>
+              <div class="info_flex">
+                <input type="number" id="new_charger" value="1" />
+                <span id="price_charger"> 200 DKK (Refundable)</span>
+              </div>
+            </div>
+          </div>
+          <div class="service_wrapper">
+            <img src="images/roskilde.png" alt="Roskilde logo" />
+            <div class="service_content">
+              <label for="new_swap">Volt recharging service</label>
+              <div class="info_flex">
+                <input type="number" id="new_swap" value="1" />
+                <span id="price_swap"> 179 DKK</span>
+              </div>
+            </div>
+          </div>
+          <div id="delivery_wrapper">
+            <h2>Delivery</h2>
+            <label for="new_pick_up">
+              <input
+                type="radio"
+                name="new_delivery"
+                id="new_pick_up"
+                value="Pick up at Roskilde Festival"
+              />
+              Pick up at Roskilde Festival</label
+            >
+            <label for="new_ship">
+              <input
+                type="radio"
+                name="new_delivery"
+                id="new_ship"
+                value="Shipping to your address"
+              />Shipping to your address</label
+            >
+          </div>
         </div>
         <!-- FORM STEP 2: REGISTRER -->
         <div class="step">
           <h2>Sign up</h2>
+          <p>sign up with Facebook</p>
+          <p>or</p>
+          <div id="signup_wrapper">
+            <div id="signup_details_name">
+              <label for="new_firstname">First name</label>
+              <input type="text" id="new_firstname" />
+              <label for="new_lastname">Last name</label>
+              <input type="text" id="new_lastname" />
+            </div>
+            <div id="signup_details">
+              <label for="new_country">Country</label>
+              <select name="country" id="new_country" name="new_country">
+                <option value="Denmark" selected>Denmark</option>
+                <option value="England">England</option>
+                <option value="Germany">Germany</option>
+                <option value="Latvia">Latvia</option>
+                <option value="lithuania">lithuania</option>
+                <option value="Norway">Norway</option>
+                <option value="Poland">Poland</option>
+                <option value="Sweden">Sweden</option>
+              </select>
+              <label for="new_phone">Phone number</label>
+              <input type="tel" id="new_phone" name="new_phone" />
+              <label for="new_email">E-mail</label>
+              <input name="new_email" type="new_email" id="new_email" />
+              <label for="new_password">Password</label>
+              <input
+                name="new_password"
+                type="new_password"
+                id="new_password"
+              />
+            </div>
+            <input type="checkbox" name="new_terms" id="new_terms" />
+            <label for="new_terms"
+              >I agree to Volts terms and privacy policy.</label
+            >
+            <br />
+            <input
+              type="checkbox"
+              name="new_special_offer"
+              id="new_special_offer"
+            />
+            <label for="new_special_offer"
+              >I am interested in receiving VOLT special offers & news by email
+              (we would not want you to miss out on the good stuff and we will
+              not spam you)</label
+            >
+          </div>
         </div>
         <!-- FORM STEP 3: PAYMENT -->
         <div class="step">
           <h2>Payment methods</h2>
           <h2>Details</h2>
         </div>
+
+        <input
+          type="submit"
+          name="submit"
+          value="Confirm payment"
+          id="submit"
+        />
       </form>
-      <!-- GO TO THE NEXT STEP -->
-      <button id="next_step">Continue</button>
+      <div id="buttons">
+        <!-- GO TO THE NEXT STEP -->
+        <button id="next_step">Continue</button>
+      </div>
+
       <!-- SUMMARY -->
       <div id="summary">
-        <h2>summary</h2>
-        <h3>Account</h3>
-        <p>name</p>
-        <p>Country</p>
-        <p>phone number</p>
-        <p>E-mail</p>
-        <h3>Order</h3>
-        <p>x volt pocket chargers</p>
-        <p>x times swapping per day</p>
-        <h3>Delivery</h3>
-        <p>...</p>
-        <p>Total: x (inclusive depositum x DKK)</p>
+        <h2>Summary</h2>
+        <div class="sum_account sum">
+          <h3>Account</h3>
+          <p id="sumName">name</p>
+          <p id="sumCountry">Country</p>
+          <p id="sumPhone">phone number</p>
+          <p id="sumEmail">E-mail</p>
+        </div>
+        <div class="sum_order sum">
+          <h3>Order</h3>
+          <p id="sumCharger">x volt pocket chargers</p>
+          <p id="sumSwap">x times swapping per day</p>
+          <h3>Delivery</h3>
+          <p id="sumDelivery">...</p>
+          <p>Total: <span id="sumTotal"></span> (inclusive depositum x DKK)</p>
+        </div>
       </div>
     </div>
+
+    <section></section>
+    <template>
+      <article>
+        <h2 id="firstname"></h2>
+        <h2 id="lastname"></h2>
+        <p id="email"></p>
+        <p id="password"></p>
+        <p id="country"></p>
+        <p id="phone"></p>
+        <p id="charger"></p>
+        <p id="swap"></p>
+        <p id="delivery"></p>
+      </article>
+    </template>
     <script src="main.js"></script>
   </body>
 </html>

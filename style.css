@@ -4,6 +4,7 @@
 
 body {
   background-color: gray;
+  margin: 0;
 }
 /* FORM WRAPPER */
 #form_wrapper {
@@ -11,27 +12,32 @@ body {
   width: 800px;
   display: grid;
   grid-template-columns: 3fr 1fr;
-  grid-template-rows: 50px auto 40px;
+  grid-template-rows: 50px auto auto;
 }
 
 /* PROGRES BAR */
 #progress_bar {
+  position: relative;
   grid-area: 1 / 1 /2/3;
   background-color: lightgray;
 }
 #power {
-  position: relative;
+  position: absolute;
   background-color: #a6cc45;
   width: 33%;
   height: 50px;
   transition: 1s;
 }
+#battery {
+  position: absolute;
+  z-index: 1;
+}
 #step_title {
   position: relative;
-  bottom: 50px;
+
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  padding-left: 15px;
+  padding-left: 40px;
   color: gray;
 }
 .selected_step {
@@ -43,20 +49,114 @@ form {
   background-color: white;
   padding: 15px;
 }
+input,
+select {
+  padding: 6px;
+}
+input,
+label {
+  display: block;
+}
+input[type="radio"],
+label {
+  display: inline;
+}
+input[type="checkbox"],
+label {
+  display: inline;
+}
+select,
+label {
+  display: inline;
+}
 /* hides all steps by default */
 .step {
   display: none;
 }
 
-/* THE CONTINUE BUTTON */
-button {
+/* FORM - CART */
+/* services */
+.service_wrapper {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+.service_content {
+  grid-column: 2/3;
+  padding: 10px;
+}
+
+.service_content input {
+  width: 42px;
+  height: 20px;
+}
+.info_flex {
+  display: flex;
+}
+/* Delivery */
+#delivery_wrapper label {
+  display: block;
+}
+/* FORM - REGISTRER */
+#signup_details {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+#new_country {
+  width: 90px;
+  height: 30px;
+  background-color: white;
+}
+#new_phone {
+  width: 120px;
+}
+#new_email {
+  width: 180px;
+}
+#new_password {
+  width: 160px;
+}
+
+/* BUTTONS */
+
+#buttons {
+  background-color: white;
   grid-area: 3 / 1 / 4 / 2;
+  padding: 0 15px;
+}
+
+#submit {
+  display: none;
+  border: 1px solid #a6cc45;
+}
+
+button,
+#submit {
+  background-color: #a6cc45;
+  width: 300px;
+  padding: 20px 0;
+  margin: 20px 0;
+}
+
+#next_step {
+  padding: 20px 0;
+  margin: 20px 0;
+  z-index: 2;
 }
 
 /* SUMMARY */
 #summary {
-  grid-area: 2 / 2 /4/3;
+  grid-area: 2 / 2 /4/ 3;
   padding: 15px;
   background-color: white;
   border-left: 1px solid lightgray;
+}
+.sum {
+  display: none;
+}
+
+/************/
+article {
+  border: 1px solid black;
+  width: 300px;
+  margin: 10px;
 }

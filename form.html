@@ -9,6 +9,49 @@
     <title>Volt - checkout form</title>
   </head>
   <body>
+    <div id="form_wrapper">
+      <div id="progress_bar">
+        <div id="power"></div>
+        <div id="step_title">
+          <p id="step_title_1" class="selected_step">Cart</p>
+          <p id="step_title_2">Registrer</p>
+          <p id="step_title_3">Payment</p>
+        </div>
+      </div>
+      <form>
+        <!-- FORM STEP 1: CART -->
+        <div class="step">
+          <h2>Services</h2>
+          <h2>Delivery</h2>
+        </div>
+        <!-- FORM STEP 2: REGISTRER -->
+        <div class="step">
+          <h2>Sign up</h2>
+        </div>
+        <!-- FORM STEP 3: PAYMENT -->
+        <div class="step">
+          <h2>Payment methods</h2>
+          <h2>Details</h2>
+        </div>
+      </form>
+      <!-- GO TO THE NEXT STEP -->
+      <button id="next_step">Continue</button>
+      <!-- SUMMARY -->
+      <div id="summary">
+        <h2>summary</h2>
+        <h3>Account</h3>
+        <p>name</p>
+        <p>Country</p>
+        <p>phone number</p>
+        <p>E-mail</p>
+        <h3>Order</h3>
+        <p>x volt pocket chargers</p>
+        <p>x times swapping per day</p>
+        <h3>Delivery</h3>
+        <p>...</p>
+        <p>Total: x (inclusive depositum x DKK)</p>
+      </div>
+    </div>
     <script src="main.js"></script>
   </body>
 </html>

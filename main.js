@@ -21,7 +21,6 @@ let currentStep = 0;
 
 function init() {
   showStep(currentStep); // Go to the form
-  get(); // Go to the database
   calculatePrice(); // go to ekstra
   document
     .querySelector("#next_step")
@@ -141,40 +140,6 @@ function nextStep() {
 // Key to json (x-apikey): 5ca0f5bfdf5d634f46ecb0ca
 // JSON homepage: https://keaprojects-9fe5.restdb.io/home/db/5c9e05e52976c93200005ee4/cards/5c9e06c42976c93200005f09
 // JSON file: https://keaprojects-9fe5.restdb.io/rest/volt
-
-// GET
-function get() {
-  fetch("https://keaprojects-9fe5.restdb.io/rest/volt", {
-    method: "get",
-    headers: {
-      "Content-Type": "application/json; charset=utf-8",
-      "x-apikey": "5ca0f5bfdf5d634f46ecb0ca",
-      "cache-control": "no-cache"
-    }
-  })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-      data.forEach(showUser);
-    });
-}
-
-function showUser(user) {
-  const template = document.querySelector("template").content;
-  const clone = template.cloneNode(true);
-
-  clone.querySelector("#firstname").textContent = user.firstname;
-  clone.querySelector("#lastname").textContent = user.lastname;
-  clone.querySelector("#email").textContent = user.email;
-  clone.querySelector("#password").textContent = user.password;
-  clone.querySelector("#country").textContent = user.country;
-  clone.querySelector("#phone").textContent = user.phone;
-  clone.querySelector("#charger").textContent = user.voltcharger;
-  clone.querySelector("#swap").textContent = user.swapping;
-  clone.querySelector("#delivery").textContent = user.delivery;
-
-  document.querySelector("section").appendChild(clone);
-}
 
 // POST
 

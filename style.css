@@ -5,8 +5,23 @@
 body {
   background-color: gray;
   margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.9em;
+  font-weight: 300;
+  color: #3a3d3c;
 }
 
+h2 {
+  font-size: 1.6em;
+  font-weight: 600;
+}
+h3 {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+span {
+  padding-left: 15px;
+}
 /****************/
 /* FORM WRAPPER */
 #form_wrapper {
@@ -42,9 +57,11 @@ body {
   grid-template-columns: repeat(3, 1fr);
   padding-left: 40px;
   color: gray;
+  font-size: 1.2em;
 }
 .selected_step {
-  color: black;
+  color: #3a3d3c;
+  font-weight: 500;
 }
 
 /****************/
@@ -56,29 +73,77 @@ form {
 }
 input,
 select {
+  margin-bottom: 20px;
   padding: 6px;
+}
+input:hover,
+select:hover,
+label:hover {
+  cursor: pointer;
 }
 input,
 label {
   display: block;
 }
-input[type="radio"],
-label {
-  display: inline;
+
+input:focus,
+select:focus {
+  outline-color: #a6cc45;
 }
-input[type="checkbox"],
-label {
-  display: inline;
+input[type="checkbox"] {
+  position: relative;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 1em;
+  height: 1em;
+  border: 1px solid #999;
+  vertical-align: -2px;
 }
-select,
+input[type="checkbox"]:focus {
+  outline: none;
+}
+input[type="checkbox"]::before {
+  content: "✔";
+  color: #a6cc45;
+  position: absolute;
+  font-size: 1.2em;
+  right: 0;
+  top: -0.3em;
+  visibility: hidden;
+}
+input[type="checkbox"]:checked::before {
+  visibility: visible;
+}
+
 label {
-  display: inline;
+  font-size: 0.9em;
+  font-weight: 500;
 }
 /* hides all steps by default */
 .step {
   display: none;
 }
+/* Radio-buttons */
+.one_line {
+  display: flex;
+}
+input[type="radio"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+
+  border: 1px solid #999;
+  outline: none;
+}
+input[type="radio"]:checked {
+  background-color: #a6cc45;
+  border: none;
+}
 /****************/
 /* FORM - CART */
 
@@ -95,8 +160,13 @@ label {
   width: 42px;
   height: 20px;
 }
+
 .info_flex {
   display: flex;
+}
+.linethrough_price {
+  text-decoration: line-through;
+  color: #a29fa0;
 }
 /* Delivery */
 #delivery_wrapper label {
@@ -122,6 +192,80 @@ label {
 #new_password {
   width: 160px;
 }
+/* Facebook SignUp */
+.logo {
+  background: #0064ab;
+  background-image: url(images/logo-facebook-white-small.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 50px;
+  width: 50px;
+  border-radius: 4px 0px 0px 4px;
+}
+.continuetxt {
+  margin: auto auto;
+}
+
+.fcbtag {
+  display: flex;
+  color: white;
+  background: #0079ce;
+  border-radius: 4px;
+  height: 50px;
+  width: 250px;
+  text-align: center;
+  overflow: hidden;
+}
+.fcbtag:hover .logo {
+  background-color: #004d85;
+}
+.fcbtag:hover {
+  background-color: #0068b3;
+  cursor: pointer;
+}
+
+.textunder {
+  font-size: 0.9em;
+}
+
+/****************/
+/* FORM - PAYMENT */
+#payment_methods {
+  margin: 5px;
+  display: grid;
+  grid-template-columns: repeat(3, 120px);
+  grid-gap: 15px;
+}
+.pay_method {
+  display: grid;
+  grid-template-rows: 80px 30px;
+  border: 1px solid #999;
+  padding: 15px;
+  text-align: center;
+}
+#payment_methods img {
+  width: 80px;
+}
+.pay_method:hover {
+  border: 1px solid #a6cc45;
+  cursor: pointer;
+}
+
+#new_card {
+  width: 150px;
+}
+#new_expiry_date {
+  width: 60px;
+}
+#new_cvc {
+  width: 50px;
+}
+
+/****************/
+/* VALIDATION */
+.check_validation:invalid {
+  border: 1px solid red;
+}
 /****************/
 /* BUTTONS */
 
@@ -142,6 +286,17 @@ button,
   width: 300px;
   padding: 20px 0;
   margin: 20px 0;
+  color: white;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+button:focus,
+#submit:focus {
+  outline: none;
+}
+button:hover,
+#submit:hover {
+  background-color: #9bbe40;
 }
 
 #next_step {
@@ -149,6 +304,7 @@ button,
   margin: 20px 0;
   z-index: 2;
 }
+
 /****************/
 /* SUMMARY */
 #summary {
@@ -159,6 +315,48 @@ button,
 }
 .sum {
   display: none;
+}
+
+/****************/
+/* QUESTION-MARK ? */
+.question {
+  font-weight: bold;
+  position: absolute;
+  background-color: #a6cc45;
+  width: 30px;
+  height: 30px;
+  padding: 6px 11px;
+  transform: translate(160px, -35px);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.question_swap {
+  transform: translate(175px, -35px);
+}
+
+.question_info {
+  display: none;
+  width: 220px;
+  z-index: 3;
+  position: absolute;
+  padding: 10px;
+  top: 30%;
+  left: 50%;
+  background-color: white;
+  border: 1px solid #a6cc45;
+}
+.close_charger,
+.close_swap {
+  font-size: 0.9em;
+  font-weight: 400;
+  padding: 10px;
+  width: 130px;
+  border: none;
+  text-decoration: underline;
+  background-color: transparent;
+  color: #a6cc45;
+  margin: 0;
 }
 
 /************/

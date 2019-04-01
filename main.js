@@ -23,7 +23,11 @@ function init() {
   showStep(currentStep); // Go to the form
   get(); // Go to the database
   calculatePrice(); // go to ekstra
-  document.querySelector("#next_step").addEventListener("click", nextStep); // go to continue-button
+  document
+    .querySelector("#next_step")
+    .addEventListener("click", sendValidation); // go to validation
+  sendToSummary(); // go to summary
+  questionMark(); // go to ekstra
 }
 
 ////////////////////////////////////////////////////////
@@ -38,6 +42,7 @@ function showStep(number) {
   // PROGRESS BAR
   // The width of the progress bar depends on the current step
   let progressbar = document.querySelector("#power");
+
   if (number == 1) {
     progressbar.style.width = "65.5%";
 
@@ -58,6 +63,61 @@ function showStep(number) {
 
     summaryPay();
   }
+}
+
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+// VALIDATION
+
+function sendValidation() {
+  if (document.querySelector(".stepCart").style.display == "block") {
+    validateCart();
+  } else if (
+    document.querySelector(".stepRegistrer").style.display == "block"
+  ) {
+    validateRegistrer();
+  }
+}
+
+function validateCart() {
+  let valDelivery = document.getElementById("new_pick_up");
+  if (valDelivery.checkValidity()) {
+    console.log("validates!");
+    nextStep();
+  } else if (form.elements.new_charger.value == 0) {
+    nextStep();
+    console.log("0!");
+  } else {
+    console.log("Doesn't validate!");
+  }
+}
+
+function validateRegistrer() {
+  console.log("Checking!");
+  let valFirstname = document.getElementById("new_firstname");
+  let valLastname = document.getElementById("new_lastname");
+  let valPhone = document.getElementById("new_phone");
+  let valEmail = document.getElementById("new_email");
+  let valPassword = document.getElementById("new_password");
+  let valTerms = document.getElementById("new_terms");
+
+  if (
+    valFirstname.checkValidity() &&
+    valLastname.checkValidity() &&
+    valPhone.checkValidity() &&
+    valEmail.checkValidity() &&
+    valPassword.checkValidity() &&
+    valTerms.checkValidity()
+  ) {
+    console.log("validates!");
+    nextStep();
+  }
+  valFirstname.classList.add("check_validation");
+  valLastname.classList.add("check_validation");
+  valPhone.classList.add("check_validation");
+  valEmail.classList.add("check_validation");
+  valPassword.classList.add("check_validation");
+  valTerms.classList.add("check_validation");
 }
 
 ////////////////////////////////////////////////////////
@@ -133,8 +193,9 @@ function post(data) {
     .then(data => {
       form.elements.submit.disabled = false;
       form.reset();
+      self.location = "responds.html";
     });
-  showUser(data); // go to GET
+  //showUser(data); // go to GET
 }
 
 // add Task / submit
@@ -153,8 +214,6 @@ form.addEventListener("submit", e => {
     delivery: form.elements.new_delivery.value
   };
   e.preventDefault();
-  console.log(form);
-  console.log("submitted");
   post(data);
 });
 
@@ -162,16 +221,58 @@ form.addEventListener("submit", e => {
 ////////////////////////////////////////////////////////
 // SUMMARY
 
+function sendToSummary() {
+  let newSwap = document.querySelector("#new_swap");
+  let newCharger = document.querySelector("#new_charger");
+  let newFirst = document.querySelector("#new_firstname");
+  let newLast = document.querySelector("#new_lastname");
+  let newPhone = document.querySelector("#new_phone");
+  let newEmail = document.querySelector("#new_email");
+
+  // SHOW IN THE SUMMARY (CART-SITE) when clicked og pressed down a key in the input-field
+  newSwap.addEventListener("keyup", summaryReg);
+  newCharger.addEventListener("keyup", summaryReg);
+  newSwap.addEventListener("click", summaryReg);
+  newCharger.addEventListener("click", summaryReg);
+  document.querySelector("#new_pick_up").addEventListener("click", summaryReg);
+  document.querySelector("#new_ship").addEventListener("click", summaryReg);
+
+  // SHOW IN THE SUMMARY (REGISTRER-SITE)
+  newFirst.addEventListener("keyup", summaryPay);
+  newFirst.addEventListener("click", summaryPay);
+  newLast.addEventListener("keyup", summaryPay);
+  newLast.addEventListener("click", summaryPay);
+  newPhone.addEventListener("keyup", summaryPay);
+  newPhone.addEventListener("click", summaryPay);
+  newEmail.addEventListener("keyup", summaryPay);
+  newEmail.addEventListener("click", summaryPay);
+  document.querySelector("#new_country").addEventListener("click", summaryPay);
+}
+
 function summaryReg() {
+  removeDelivery();
+
   document.querySelector(".sum_order").style.display = "block";
 
   document.querySelector("#sumCharger").textContent =
     form.elements.new_charger.value + " volt pocket chargers";
   document.querySelector("#sumSwap").textContent =
     form.elements.new_swap.value + " times swapping per day";
-  document.querySelector("#sumTotal").textContent =
-    Number(form.elements.new_swap.value) * 179 +
+
+  if (form.elements.new_delivery.value == "Shipping to your address") {
+    document.querySelector("#sumTotal").textContent =
+      Number(form.elements.new_swap.value) * 179 +
+      Number(form.elements.new_charger.value) * 200 +
+      50;
+  } else {
+    document.querySelector("#sumTotal").textContent =
+      Number(form.elements.new_swap.value) * 179 +
+      Number(form.elements.new_charger.value) * 200;
+  }
+
+  document.querySelector("#sumDeposit").textContent =
     Number(form.elements.new_charger.value) * 200;
+
   document.querySelector("#sumDelivery").textContent =
     form.elements.new_delivery.value;
 }
@@ -192,6 +293,8 @@ function summaryPay() {
 ////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////
 ///////////////// EKSTRA
+
+// CALCULATE PRICES
 function calculatePrice() {
   document
     .querySelector("#new_charger")
@@ -208,4 +311,44 @@ function calculateChargerPrice() {
 function calculateSwapPrice() {
   document.querySelector("#price_swap").textContent =
     Number(form.elements.new_swap.value) * 179 + " DKK";
+  document.querySelector(".linethrough_price").textContent =
+    ((Number(form.elements.new_swap.value) * 179 * 100) / 71.6).toFixed(0) +
+    " DKK";
+}
+
+// REMOVE DELIVERY-SECTION
+function removeDelivery() {
+  if (form.elements.new_charger.value < 1) {
+    document.querySelector("#delivery_wrapper").style.display = "none";
+  } else {
+    document.querySelector("#delivery_wrapper").style.display = "block";
+  }
+}
+
+// QUESTION-MARK
+function questionMark() {
+  document
+    .querySelector(".question_charger")
+    .addEventListener("click", qCharger);
+  document.querySelector(".question_swap").addEventListener("click", qSwap);
+}
+
+function qCharger() {
+  document.querySelector("#question_swap_info").style.display = "none";
+  document.querySelector("#question_charger_info").style.display = "block";
+  document.querySelector(".close_charger").addEventListener("click", removeQ);
+}
+
+function qSwap() {
+  document.querySelector("#question_charger_info").style.display = "none";
+  document.querySelector("#question_swap_info").style.display = "block";
+  document.querySelector(".close_swap").addEventListener("click", removeQ);
+}
+
+function removeQ() {
+  document.querySelector("#question_swap_info").style.display = "none";
+  document.querySelector("#question_charger_info").style.display = "none";
+  document
+    .querySelector(".question_charger")
+    .addEventListener("click", qCharger);
 }

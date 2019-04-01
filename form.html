@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="robots" content="noindex, nofollow" />
     <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700"
+      rel="stylesheet"
+    />
     <title>Volt - checkout form</title>
   </head>
   <body>
@@ -22,7 +26,7 @@
       </div>
       <form>
         <!-- FORM STEP 1: CART -->
-        <div class="step">
+        <div class="step stepCart">
           <h2>Services</h2>
           <div class="service_wrapper">
             <img src="images/Volt-Charger.png" alt="volt pocket charger" />
@@ -30,8 +34,9 @@
               <label for="new_charger">
                 Volt Charger Deposit
               </label>
+              <div class="question question_charger">?</div>
               <div class="info_flex">
-                <input type="number" id="new_charger" value="1" />
+                <input type="number" id="new_charger" value="1" min="0" />
                 <span id="price_charger"> 200 DKK (Refundable)</span>
               </div>
             </div>
@@ -40,49 +45,63 @@
             <img src="images/roskilde.png" alt="Roskilde logo" />
             <div class="service_content">
               <label for="new_swap">Volt recharging service</label>
+              <div class="question question_swap">?</div>
               <div class="info_flex">
-                <input type="number" id="new_swap" value="1" />
-                <span id="price_swap"> 179 DKK</span>
+                <input type="number" id="new_swap" value="1" min="1" />
+                <span id="price_swap">
+                  179 DKK
+                </span>
+                <span class="linethrough_price"> 250 DKK</span>
               </div>
             </div>
           </div>
           <div id="delivery_wrapper">
             <h2>Delivery</h2>
-            <label for="new_pick_up">
+            <div class="one_line">
               <input
                 type="radio"
                 name="new_delivery"
                 id="new_pick_up"
                 value="Pick up at Roskilde Festival"
+                required
               />
-              Pick up at Roskilde Festival</label
-            >
-            <label for="new_ship">
+              <label for="new_pick_up">
+                Pick up at Roskilde Festival FREE</label
+              >
+            </div>
+            <div class="one_line">
               <input
                 type="radio"
                 name="new_delivery"
                 id="new_ship"
                 value="Shipping to your address"
-              />Shipping to your address</label
-            >
+              />
+              <label for="new_ship"> Shipping to your address 50 DKK</label>
+            </div>
           </div>
         </div>
         <!-- FORM STEP 2: REGISTRER -->
-        <div class="step">
+        <div class="step stepRegistrer">
           <h2>Sign up</h2>
-          <p>sign up with Facebook</p>
-          <p>or</p>
+          <div class="fcbtag">
+            <div class="logo"></div>
+            <p class="continuetxt">Sign up with Facebook</p>
+          </div>
+          <div class="textunder">
+            We don't post anything.
+          </div>
+          <h3>Or</h3>
           <div id="signup_wrapper">
             <div id="signup_details_name">
               <label for="new_firstname">First name</label>
-              <input type="text" id="new_firstname" />
+              <input type="text" id="new_firstname" required />
               <label for="new_lastname">Last name</label>
-              <input type="text" id="new_lastname" />
+              <input type="text" id="new_lastname" required />
             </div>
             <div id="signup_details">
               <label for="new_country">Country</label>
               <select name="country" id="new_country" name="new_country">
-                <option value="Denmark" selected>Denmark</option>
+                <option value="Denmark">Denmark</option>
                 <option value="England">England</option>
                 <option value="Germany">Germany</option>
                 <option value="Latvia">Latvia</option>
@@ -92,37 +111,62 @@
                 <option value="Sweden">Sweden</option>
               </select>
               <label for="new_phone">Phone number</label>
-              <input type="tel" id="new_phone" name="new_phone" />
+              <input type="tel" id="new_phone" name="new_phone" required />
               <label for="new_email">E-mail</label>
-              <input name="new_email" type="new_email" id="new_email" />
+              <input name="new_email" type="email" id="new_email" required />
               <label for="new_password">Password</label>
               <input
                 name="new_password"
-                type="new_password"
+                type="password"
                 id="new_password"
+                required
               />
             </div>
-            <input type="checkbox" name="new_terms" id="new_terms" />
-            <label for="new_terms"
-              >I agree to Volts terms and privacy policy.</label
-            >
-            <br />
-            <input
-              type="checkbox"
-              name="new_special_offer"
-              id="new_special_offer"
-            />
-            <label for="new_special_offer"
-              >I am interested in receiving VOLT special offers & news by email
-              (we would not want you to miss out on the good stuff and we will
-              not spam you)</label
-            >
+            <div class="one_line">
+              <input type="checkbox" name="new_terms" id="new_terms" required />
+              <label for="new_terms"
+                >I agree to Volts terms and privacy policy.</label
+              >
+            </div>
+            <div class="one_line">
+              <input
+                type="checkbox"
+                name="new_special_offer"
+                id="new_special_offer"
+              />
+              <label for="new_special_offer"
+                >I am interested in receiving VOLT special offers & news by
+                email (we would not want you to miss out on the good stuff and
+                we will not spam you)</label
+              >
+            </div>
           </div>
         </div>
         <!-- FORM STEP 3: PAYMENT -->
         <div class="step">
           <h2>Payment methods</h2>
+          <div id="payment_methods">
+            <div class="pay_method">
+              <img src="images/mobilepay.png" alt="mobilpay" />
+              <p>MobilePay</p>
+            </div>
+            <div class="pay_method">
+              <img src="images/paymentcards.png" alt="paymentcards" />
+              <p>Credit card</p>
+            </div>
+            <div class="pay_method">
+              <img src="images/paypal.png" alt="paypal" />
+              <p>PayPal</p>
+            </div>
+          </div>
+
           <h2>Details</h2>
+          <label for="new_card">Card Number</label>
+          <input type="text" id="new_card" required />
+          <label for="new_expiry_date">Expiry Date</label>
+          <input type="text" id="new_expiry_date" required />
+          <label for="new_cvc">CVC/CVV2</label>
+          <input type="text" id="new_cvc" required />
         </div>
 
         <input
@@ -153,9 +197,28 @@
           <p id="sumSwap">x times swapping per day</p>
           <h3>Delivery</h3>
           <p id="sumDelivery">...</p>
-          <p>Total: <span id="sumTotal"></span> (inclusive depositum x DKK)</p>
+          <p>
+            Total: <span id="sumTotal"></span> (inclusive depositum
+            <span id="sumDeposit"></span> DKK)
+          </p>
         </div>
       </div>
+    </div>
+
+    <div id="question_charger_info" class="question_info">
+      <h3>Volt Charger</h3>
+      <p>
+        Here you add how many chargers you want. If you already have the
+        charger, just type 0, and then you still can buy our swapping service.
+      </p>
+      <button class="close_charger">Ok, I understand</button>
+    </div>
+    <div id="question_swap_info" class="question_info">
+      <h3>Volt Swapping Service</h3>
+      <p>
+        ...
+      </p>
+      <button class="close_swap">Ok, I understand</button>
     </div>
 
     <!-- Delete this template (only used to see, if the things works). Delete the "get"-part in JavaScript too. -->

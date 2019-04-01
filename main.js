@@ -1,5 +1,10 @@
 "use strict";
 window.addEventListener("DOMContentLoaded", init);
+
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+///////////////// GLOBALS VARIABLES
+
 const form = document.querySelector("form");
 
 // the getElementsByClassName returns an array-like object of all child elements which have all of the given class names. In this case, it will be step.
@@ -10,15 +15,21 @@ const step = document.getElementsByClassName("step");
 // We will start at 0 (the cart).
 let currentStep = 0;
 
-function init() {
-  showStep(currentStep); // the form
-  get(); // the database
-  calculatePrice(); // ekstra
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+///////////////// STARTING FUNCTION
 
-  document.querySelector("#next_step").addEventListener("click", nextStep);
+function init() {
+  showStep(currentStep); // Go to the form
+  get(); // Go to the database
+  calculatePrice(); // go to ekstra
+  document.querySelector("#next_step").addEventListener("click", nextStep); // go to continue-button
 }
 
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
 ///////////////// THE FORM
+
 // SHOW THE CURRENT STEP
 function showStep(number) {
   // This will show the current step.
@@ -49,6 +60,8 @@ function showStep(number) {
   }
 }
 
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
 // CONTINUE-BUTTON
 
 function nextStep() {
@@ -62,6 +75,8 @@ function nextStep() {
   showStep(currentStep);
 }
 
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
 ///////////////// THE DATABASE
 // Key to json (x-apikey): 5ca0f5bfdf5d634f46ecb0ca
 // JSON homepage: https://keaprojects-9fe5.restdb.io/home/db/5c9e05e52976c93200005ee4/cards/5c9e06c42976c93200005f09
@@ -100,8 +115,7 @@ function showUser(user) {
 
   document.querySelector("section").appendChild(clone);
 }
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
+
 // POST
 
 function post(data) {
@@ -175,6 +189,8 @@ function summaryPay() {
     form.elements.new_email.value;
 }
 
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
 ///////////////// EKSTRA
 function calculatePrice() {
   document

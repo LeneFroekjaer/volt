@@ -386,6 +386,7 @@ input[type="radio"]:checked {
 button,
 #submit {
   background-color: #a6cc45;
+  border: none;
   width: 300px;
   padding: 20px 0;
   margin: 20px 0;

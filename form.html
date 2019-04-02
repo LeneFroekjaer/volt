@@ -57,6 +57,7 @@
           </div>
           <div id="delivery_wrapper">
             <h2>Delivery</h2>
+
             <div class="one_line">
               <input
                 type="radio"
@@ -65,6 +66,7 @@
                 value="Pick up at Roskilde Festival"
                 required
               />
+              <span id="invalid_delivery" class="validation_fail"></span>
               <label for="new_pick_up">
                 Pick up at Roskilde Festival FREE</label
               >
@@ -93,10 +95,15 @@
           <h3>Or</h3>
           <div id="signup_wrapper">
             <div id="signup_details_name">
-              <label for="new_firstname">First name</label>
+              <label for="new_firstname">First name </label>
               <input type="text" id="new_firstname" required />
-              <label for="new_lastname">Last name</label>
-              <input type="text" id="new_lastname" required />
+              <span id="invalid_first" class="validation_fail"></span>
+              <label for="new_lastname">Last name </label>
+              <input type="text" id="new_lastname" required /><span
+                id="invalid_last"
+                class="validation_fail"
+              >
+              </span>
             </div>
             <div id="signup_details">
               <label for="new_country">Country</label>
@@ -110,35 +117,52 @@
                 <option value="Poland">Poland</option>
                 <option value="Sweden">Sweden</option>
               </select>
-              <label for="new_phone">Phone number</label>
-              <input type="tel" id="new_phone" name="new_phone" required />
+              <label for="new_phone">Phone number </label>
+              <input type="tel" id="new_phone" name="new_phone" required /><span
+                id="invalid_phone"
+                class="validation_fail"
+              >
+              </span>
               <label for="new_email">E-mail</label>
-              <input name="new_email" type="email" id="new_email" required />
-              <label for="new_password">Password</label>
+              <input
+                name="new_email"
+                type="email"
+                id="new_email"
+                required
+              /><span id="invalid_mail" class="validation_fail"></span>
+              <label for="new_password">Password </label>
               <input
                 name="new_password"
                 type="password"
                 id="new_password"
+                pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
                 required
-              />
+              /><span id="invalid_password" class="validation_fail"> </span>
             </div>
-            <div class="one_line">
-              <input type="checkbox" name="new_terms" id="new_terms" required />
-              <label for="new_terms"
-                >I agree to Volts terms and privacy policy.</label
-              >
-            </div>
-            <div class="one_line">
-              <input
-                type="checkbox"
-                name="new_special_offer"
-                id="new_special_offer"
-              />
-              <label for="new_special_offer"
-                >I am interested in receiving VOLT special offers & news by
-                email (we would not want you to miss out on the good stuff and
-                we will not spam you)</label
-              >
+            <div id="check_field">
+              <div class="one_line">
+                <input
+                  type="checkbox"
+                  name="new_terms"
+                  id="new_terms"
+                  required
+                />
+                <label for="new_terms"
+                  >I agree to Volts terms and privacy policy.</label
+                >
+              </div>
+              <div class="one_line">
+                <input
+                  type="checkbox"
+                  name="new_special_offer"
+                  id="new_special_offer"
+                />
+                <label for="new_special_offer"
+                  >I am interested in receiving VOLT special offers & news by
+                  email (we would not want you to miss out on the good stuff and
+                  we will not spam you)</label
+                >
+              </div>
             </div>
           </div>
         </div>

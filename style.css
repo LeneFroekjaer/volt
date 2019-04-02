@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: gray;
+  background-color: lightgray;
   margin: 0;
   font-family: "Montserrat", sans-serif;
   font-size: 0.9em;
@@ -71,10 +71,13 @@ form {
   background-color: white;
   padding: 15px;
 }
+
 input,
 select {
   margin-bottom: 20px;
   padding: 6px;
+  border: 1px solid #e8e5e6;
+  border-radius: 5px;
 }
 input:hover,
 select:hover,
@@ -97,7 +100,7 @@ input[type="checkbox"] {
   appearance: none;
   width: 1em;
   height: 1em;
-  border: 1px solid #999;
+  border: 1px solid #e8e5e6;
   vertical-align: -2px;
 }
 input[type="checkbox"]:focus {
@@ -137,7 +140,7 @@ input[type="radio"] {
   width: 15px;
   height: 15px;
 
-  border: 1px solid #999;
+  border: 1px solid #e8e5e6;
   outline: none;
 }
 input[type="radio"]:checked {
@@ -227,7 +230,10 @@ input[type="radio"]:checked {
 .textunder {
   font-size: 0.9em;
 }
-
+#check_field {
+  font-size: 0.8em;
+  margin-top: 20px;
+}
 /****************/
 /* FORM - PAYMENT */
 #payment_methods {
@@ -239,7 +245,7 @@ input[type="radio"]:checked {
 .pay_method {
   display: grid;
   grid-template-rows: 80px 30px;
-  border: 1px solid #999;
+  border: 1px solid #e8e5e6;
   padding: 15px;
   text-align: center;
 }
@@ -265,7 +271,49 @@ input[type="radio"]:checked {
 /* VALIDATION */
 .check_validation:invalid {
   border: 1px solid red;
+  background-color: rgb(255, 191, 191);
 }
+.check_validation:valid {
+  border: 1px solid #a6cc45;
+  background-color: white;
+}
+
+.validation_fail {
+  font-size: 0.7em;
+  color: red;
+  padding-left: 5px;
+}
+#invalid_delivery::after,
+#invalid_first::after,
+#invalid_last::after,
+#invalid_phone::after,
+#invalid_mail::after,
+#invalid_password::after {
+  position: absolute;
+  transform: translateY(-20px);
+}
+
+.check_validation:invalid + #invalid_delivery::after {
+  content: "Please pick a delivery method";
+}
+
+.check_validation:invalid + #invalid_first::after {
+  content: "Please enter your first name";
+}
+.check_validation:invalid + #invalid_last::after {
+  content: "Please enter your last name";
+}
+.check_validation:invalid + #invalid_phone::after {
+  content: "Please type your phone-number. fx: 12 34 45 56";
+}
+.check_validation:invalid + #invalid_mail::after {
+  content: "Please enter your E-mail. fx: mail@example.com";
+}
+
+.check_validation:invalid + #invalid_password::after {
+  content: " Your password must include Uppercase, Lowercase and Number.";
+}
+
 /****************/
 /* BUTTONS */
 
@@ -313,6 +361,10 @@ button:hover,
   background-color: white;
   border-left: 1px solid lightgray;
 }
+#summary span {
+  padding-left: 0;
+}
+
 .sum {
   display: none;
 }
@@ -357,4 +409,9 @@ button:hover,
   background-color: transparent;
   color: #a6cc45;
   margin: 0;
+}
+
+.close_charger:hover,
+.close_swap:hover {
+  color: white;
 }

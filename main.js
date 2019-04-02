@@ -88,6 +88,7 @@ function validateCart() {
     console.log("0!");
   } else {
     console.log("Doesn't validate!");
+    valDelivery.classList.add("check_validation");
   }
 }
 

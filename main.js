@@ -27,6 +27,7 @@ function init() {
     .addEventListener("click", sendValidation); // go to validation
   sendToSummary(); // go to summary
   questionMark(); // go to ekstra
+  document.querySelector("#new_country").addEventListener("blur", findPhone); // go to ekstra
 }
 
 ////////////////////////////////////////////////////////
@@ -216,7 +217,7 @@ function sendToSummary() {
 }
 
 function summaryReg() {
-  removeDelivery();
+  removeDelivery(); // go to ekstra
 
   document.querySelector(".sum_order").style.display = "block";
 
@@ -244,6 +245,7 @@ function summaryReg() {
 }
 
 function summaryPay() {
+  clickPayMethod(); // go to ekstra
   document.querySelector(".sum_account").style.display = "block";
 
   document.querySelector("#sumName").textContent =
@@ -290,6 +292,19 @@ function removeDelivery() {
     document.querySelector("#delivery_wrapper").style.display = "block";
   }
 }
+// REMOVE DETAILS-SECTION
+function clickPayMethod() {
+  document.querySelector(".mobilepay").addEventListener("click", removeDetails);
+  document.querySelector(".paymentcards").addEventListener("click", addDetails);
+  document.querySelector(".paypal").addEventListener("click", removeDetails);
+}
+
+function removeDetails() {
+  document.querySelector("#details_wrapper").style.display = "none";
+}
+function addDetails() {
+  document.querySelector("#details_wrapper").style.display = "block";
+}
 
 // QUESTION-MARK
 function questionMark() {
@@ -317,4 +332,26 @@ function removeQ() {
   document
     .querySelector(".question_charger")
     .addEventListener("click", qCharger);
+}
+
+// FIND PHONE CODE
+
+function findPhone() {
+  if (form.elements.new_country.value == "Denmark") {
+    document.querySelector("#phone_code").textContent = "+45";
+  } else if (form.elements.new_country.value == "England") {
+    document.querySelector("#phone_code").textContent = "+44";
+  } else if (form.elements.new_country.value == "Germany") {
+    document.querySelector("#phone_code").textContent = "+49";
+  } else if (form.elements.new_country.value == "Latvia") {
+    document.querySelector("#phone_code").textContent = "+371";
+  } else if (form.elements.new_country.value == "lithuania") {
+    document.querySelector("#phone_code").textContent = "+370";
+  } else if (form.elements.new_country.value == "Norway") {
+    document.querySelector("#phone_code").textContent = "+47";
+  } else if (form.elements.new_country.value == "Poland") {
+    document.querySelector("#phone_code").textContent = "+48";
+  } else if (form.elements.new_country.value == "Sweden") {
+    document.querySelector("#phone_code").textContent = "+46";
+  }
 }

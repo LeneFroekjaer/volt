@@ -16,7 +16,7 @@
     <div id="form_wrapper">
       <!-- PROGRESS BAR -->
       <div id="progress_bar">
-        <img src="images/battery_2.png" alt="battery" id="battery" />
+        <img src="images/battery_bottom_line.png" alt="battery" id="battery" />
         <div id="power"></div>
         <div id="step_title">
           <p id="step_title_1" class="selected_step">Cart</p>
@@ -90,9 +90,9 @@
             <p class="continuetxt">Sign up with Facebook</p>
           </div>
           <div class="textunder">
-            We don't post anything.
+            We don't post anything on your wall.
           </div>
-          <h3>Or</h3>
+          <h3 id="or">Or sign up with an E-mail</h3>
           <div id="signup_wrapper">
             <div id="signup_details_name">
               <label for="new_firstname">First name </label>
@@ -112,17 +112,22 @@
                 <option value="England">England</option>
                 <option value="Germany">Germany</option>
                 <option value="Latvia">Latvia</option>
-                <option value="lithuania">lithuania</option>
+                <option value="lithuania">Lithuania</option>
                 <option value="Norway">Norway</option>
                 <option value="Poland">Poland</option>
                 <option value="Sweden">Sweden</option>
               </select>
               <label for="new_phone">Phone number </label>
-              <input type="tel" id="new_phone" name="new_phone" required /><span
-                id="invalid_phone"
-                class="validation_fail"
-              >
-              </span>
+              <div id="phone_wrapper">
+                <div id="phone_code">+45</div>
+                <input
+                  type="tel"
+                  id="new_phone"
+                  name="new_phone"
+                  pattern="[0-9\s]*"
+                  required
+                /><span id="invalid_phone" class="validation_fail"></span>
+              </div>
               <label for="new_email">E-mail</label>
               <input
                 name="new_email"
@@ -135,9 +140,12 @@
                 name="new_password"
                 type="password"
                 id="new_password"
-                pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
+                pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
                 required
               /><span id="invalid_password" class="validation_fail"> </span>
+              <div class="textunder textunder_password">
+                A password is needed to login to Volt
+              </div>
             </div>
             <div id="check_field">
               <div class="one_line">
@@ -170,27 +178,28 @@
         <div class="step">
           <h2>Payment methods</h2>
           <div id="payment_methods">
-            <div class="pay_method">
+            <div class="pay_method mobilepay">
               <img src="images/mobilepay.png" alt="mobilpay" />
               <p>MobilePay</p>
             </div>
-            <div class="pay_method">
+            <div class="pay_method paymentcards">
               <img src="images/paymentcards.png" alt="paymentcards" />
               <p>Credit card</p>
             </div>
-            <div class="pay_method">
+            <div class="pay_method paypal">
               <img src="images/paypal.png" alt="paypal" />
               <p>PayPal</p>
             </div>
           </div>
-
-          <h2>Details</h2>
-          <label for="new_card">Card Number</label>
-          <input type="text" id="new_card" required />
-          <label for="new_expiry_date">Expiry Date</label>
-          <input type="text" id="new_expiry_date" required />
-          <label for="new_cvc">CVC/CVV2</label>
-          <input type="text" id="new_cvc" required />
+          <div id="details_wrapper">
+            <h2>Details</h2>
+            <label for="new_card">Card Number</label>
+            <input type="text" id="new_card" required />
+            <label for="new_expiry_date">Expiry Date</label>
+            <input type="text" id="new_expiry_date" required />
+            <label for="new_cvc">CVC/CVV2</label>
+            <input type="text" id="new_cvc" required />
+          </div>
         </div>
 
         <input

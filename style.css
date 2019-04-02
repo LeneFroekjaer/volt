@@ -39,20 +39,22 @@ span {
   grid-area: 1 / 1 /2/3;
   background-color: lightgray;
 }
+
 #power {
   position: absolute;
-  background-color: #a6cc45;
-  width: 33%;
+  background: linear-gradient(to right, #a6cc45 70%, #c2ee51 100%);
+  width: 32%;
   height: 50px;
   transition: 1s;
 }
+
 #battery {
   position: absolute;
   z-index: 1;
+  transform: translate(-1px, -1px);
 }
 #step_title {
   position: relative;
-
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   padding-left: 40px;
@@ -62,6 +64,7 @@ span {
 .selected_step {
   color: #3a3d3c;
   font-weight: 500;
+  color: white;
 }
 
 /****************/
@@ -177,23 +180,70 @@ input[type="radio"]:checked {
 }
 /****************/
 /* FORM - REGISTRER */
+
+#or {
+  position: relative;
+  z-index: 1;
+  color: #a29fa0;
+  font-size: 1em;
+  font-weight: 400;
+  margin: 30px 0;
+}
+#or:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 200px;
+  right: 0;
+  border-top: solid 1px #c7c6c6;
+}
+
 #signup_details {
   display: grid;
   grid-template-columns: 1fr;
+}
+#signup_details_name {
+  padding: 0;
+  margin: 0;
 }
 #new_country {
   width: 90px;
   height: 30px;
   background-color: white;
 }
+#phone_wrapper {
+  display: flex;
+  position: relative;
+  margin-bottom: 20px;
+}
+
 #new_phone {
   width: 120px;
+  border-radius: 0 4px 4px 0;
+  margin-bottom: 0px;
+}
+#phone_code {
+  background-color: #e2e2e2;
+  width: 42px;
+  padding: 6px;
+  border-radius: 4px 0 0 4px;
 }
 #new_email {
   width: 180px;
 }
 #new_password {
   width: 160px;
+}
+
+.textunder_password {
+  transform: translateY(-18px);
+}
+
+#check_field {
+  font-size: 0.8em;
+  margin-top: 20px;
+  padding-top: 30px;
+  border-top: solid 1px #c7c6c6;
 }
 /* Facebook SignUp */
 .logo {
@@ -228,12 +278,9 @@ input[type="radio"]:checked {
 }
 
 .textunder {
-  font-size: 0.9em;
+  font-size: 0.7em;
 }
-#check_field {
-  font-size: 0.8em;
-  margin-top: 20px;
-}
+
 /****************/
 /* FORM - PAYMENT */
 #payment_methods {
@@ -271,7 +318,7 @@ input[type="radio"]:checked {
 /* VALIDATION */
 .check_validation:invalid {
   border: 1px solid red;
-  background-color: rgb(255, 191, 191);
+  background-color: rgb(255, 239, 239);
 }
 .check_validation:valid {
   border: 1px solid #a6cc45;
@@ -286,11 +333,19 @@ input[type="radio"]:checked {
 #invalid_delivery::after,
 #invalid_first::after,
 #invalid_last::after,
-#invalid_phone::after,
 #invalid_mail::after,
 #invalid_password::after {
   position: absolute;
   transform: translateY(-20px);
+  width: 350px;
+}
+#invalid_phone::after {
+  position: absolute;
+  transform: translate(-160px, 30px);
+}
+#invalid_password::after {
+  position: absolute;
+  transform: translateY(-5px);
 }
 
 .check_validation:invalid + #invalid_delivery::after {
@@ -311,7 +366,7 @@ input[type="radio"]:checked {
 }
 
 .check_validation:invalid + #invalid_password::after {
-  content: " Your password must include Uppercase, Lowercase and Number.";
+  content: "Your password must have at least 8 characters. And it must include Uppercase, Lowercase and a number or special character.";
 }
 
 /****************/
@@ -372,6 +427,7 @@ button:hover,
 /****************/
 /* QUESTION-MARK ? */
 .question {
+  color: white;
   font-weight: bold;
   position: absolute;
   background-color: #a6cc45;
